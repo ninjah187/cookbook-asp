@@ -1,0 +1,40 @@
+﻿html {
+    background: url('/Images/bg.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body {
+    background: none;
+    color: white;
+    padding-top: 60px;
+}
+
+.cb-login-form {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 20px;
+}
+
+.cb-login-form input {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: black;
+    font-size: large;
+}
+
+.cb-login-form button {
+    background: #111;
+    border-color: black;
+}
+
+.cb-login-form button:hover {
+    background: black;
+    border-color: black;
+}

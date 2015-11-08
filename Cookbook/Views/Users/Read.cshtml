@@ -1,0 +1,12 @@
+﻿@model Cookbook.Models.User
+@{
+    Layout = "~/Views/Shared/_BasicLayout.cshtml";
+}
+
+<p>User:</p>
+<ol>
+    <li>Id: @Model.Id</li>
+    <li>Login: @Model.Login</li>
+    <li>Salt: @Model.Salt</li>
+    <li>Pass hash: @Model.PassHash</li>
+</ol>

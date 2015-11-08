@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Cookbook.Models;
 
 namespace Cookbook.Controllers
 {
@@ -10,7 +11,14 @@ namespace Cookbook.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var user = (User) Session["LoggedUser"];
+
+            if (user == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            return View(user);
         }
     }
 }

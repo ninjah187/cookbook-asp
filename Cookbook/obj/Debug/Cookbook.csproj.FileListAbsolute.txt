@@ -16,3 +16,7 @@ D:\Pisane\C#\Cookbook\Cookbook\bin\System.Web.WebPages.Razor.xml
 D:\Pisane\C#\Cookbook\Cookbook\obj\Debug\Cookbook.csprojResolveAssemblyReference.cache
 D:\Pisane\C#\Cookbook\Cookbook\obj\Debug\Cookbook.dll
 D:\Pisane\C#\Cookbook\Cookbook\obj\Debug\Cookbook.pdb
+D:\Pisane\C#\Cookbook\Cookbook\bin\EntityFramework.dll
+D:\Pisane\C#\Cookbook\Cookbook\bin\EntityFramework.SqlServer.dll
+D:\Pisane\C#\Cookbook\Cookbook\bin\EntityFramework.xml
+D:\Pisane\C#\Cookbook\Cookbook\bin\EntityFramework.SqlServer.xml
