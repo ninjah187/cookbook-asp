@@ -3,10 +3,24 @@
     Layout = "~/Views/Shared/_BasicLayout.cshtml";
 }
 
-@if (Model != null)
-{
-    <p>Logged user is @Model.Login</p>
-}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            @{
+                var headerText = @"@" + @Model.Login;
+            }
+            <h1 class="cp-side-menu-h1">@headerText</h1>
+            <ul class="cp-side-menu">
+                <li>Menu 1</li>
+                <li>Menu 2</li>
+                <a href="/Login/Logout"><li>Wyloguj się</li></a>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
 </script>

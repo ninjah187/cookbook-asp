@@ -11,5 +11,6 @@ namespace Cookbook.Models
         public string Login { get; set; }
         public string PasswordKey { get; set; }
         public string PasswordSalt { get; set; }
+        public UserRole Role { get; set; }
     }
 }

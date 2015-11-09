@@ -29,5 +29,11 @@ namespace Cookbook.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        public ActionResult Logout()
+        {
+            Session["LoggedUser"] = null;
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

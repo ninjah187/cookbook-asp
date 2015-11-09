@@ -10,6 +10,7 @@ body {
     background: none;
     color: white;
     padding-top: 60px;
+    margin-bottom: 60px;
 }
 
 .cb-login-form {
@@ -35,6 +36,58 @@ body {
 }
 
 .cb-login-form button:hover {
+    color: #ccc;
     background: black;
     border-color: black;
+}
+
+.cb-navbar {
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+}
+
+.cp-side-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.cp-side-menu li {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+}
+
+.cp-side-menu a {
+    text-decoration: none;
+}
+
+.cp-side-menu li:hover {
+    /*background: #1b0000;*/
+    background: rgba(100, 100, 100, 0.5);
+    font-size: large;
+}
+
+.cp-side-menu-h1 {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    margin: 0;
+    padding: 15px;
+    font-size: 24px;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.cp-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.5);
 }
