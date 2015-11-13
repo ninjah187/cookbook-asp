@@ -4,6 +4,8 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
@@ -11,6 +13,22 @@ body {
     color: white;
     padding-top: 60px;
     margin-bottom: 60px;
+}
+
+.cb-a, .cb-a:hover, .cb-a:link, .cb-a:visited {
+    color: white;
+}
+
+.cb-h2 {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    margin: 0;
+    border-radius: 10px 10px 0 0;
+}
+
+.cb-row {
+    margin: 0 50px;
 }
 
 .cb-login-form {
@@ -48,7 +66,7 @@ body {
 
 .cp-side-menu {
     list-style: none;
-    margin: 0;
+    margin: 0 0 20px 0;
     padding: 0;
 }
 
@@ -90,4 +108,78 @@ body {
     width: 100%;
     height: 60px;
     background: rgba(0, 0, 0, 0.5);
+}
+
+/* TODO: CHANGE cp-menu-* to cb-menu-*!!! */
+
+.cb-btn-img {
+    padding: 60px;
+    margin: 20px 0;
+    text-align: right;
+    /*border-color: rgba(0, 0, 0, 0.5);
+    border-style: solid outset;
+    border-width: 5px;
+    border-radius: 10px;*/
+    background: rgba(0, 0, 0, 0.5);
+    outline-color: rgba(0, 0, 0, 0.5);
+    outline-style: solid;
+    font-size: 20px;
+
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+}
+
+.cb-btn-img:hover {
+    outline-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+.cb-btn-img > div {
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin: 0;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#cb-products-btn-img {
+    background: url("/Images/products.jpg") no-repeat center top;
+}
+
+#cb-meals-btn-img {
+    background: url("/Images/meals.jpg") no-repeat center center;
+}
+
+.cb-table {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.cb-table thead {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.cb-table th {
+    text-align: center;
+}
+
+.cb-btn-default {
+    background: rgba(0, 0, 0, 0.7);
+    margin: 10px auto;
+    padding: 10px 20px;
+    
+    border: none;
+    border-radius: 10px;
+
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+}
+
+.cb-btn-default:hover {
+    /*font-weight: bold;
+    font-size: large;*/
+    background: rgba(255, 255, 255, 0.5);
 }

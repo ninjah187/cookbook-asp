@@ -1,0 +1,44 @@
+﻿@using Cookbook.Models
+@model List<Cookbook.Models.User>
+@{
+    Layout = "~/Views/Shared/_SideMenuLayout.cshtml";
+}
+
+
+<h2 class="cb-h2">Użytkownicy:</h2>
+<div class="cb-row text-center">
+    <p>Wszystkich użytkowników: @Model.Count</p>
+    <p>Admin: @Model.Count(p => p.Role == UserRole.Admin)</p>
+    <p>Użytkownik: @Model.Count(p => p.Role == UserRole.User)</p>
+
+    <button class="cb-btn-default">+</button>
+
+    <table class="table cb-table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Rola</th>
+            <th>Klucz</th>
+            <th>Salt</th>
+            <th>Opcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Login</td>
+                <td>@product.Role.ToString()</td>
+                <td>@product.PasswordKey</td>
+                <td>@product.PasswordSalt</td>
+                <td>
+                    <button class="cb-btn-default">Edytuj</button>
+                    <button class="cb-btn-default">Usuń</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

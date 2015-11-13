@@ -1,0 +1,44 @@
+﻿@using Cookbook.Models
+@model List<Cookbook.Models.Product>
+@{
+    Layout = "~/Views/Shared/_SideMenuLayout.cshtml";
+}
+
+
+<h2 class="cb-h2">Produkty  :</h2>
+<div class="cb-row text-center">
+    <p>Wszystkich produktów: @Model.Count</p>
+    <p>Produktów oryginalnych: @Model.Count(p => p.Origin == ItemOrigin.Basic)</p>
+    <p>Produktów własnych: @Model.Count(p => p.Origin == ItemOrigin.Custom)</p>
+
+    <button class="cb-btn-default">+</button>
+
+    <table class="table cb-table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nazwa</th>
+            <th>Kategoria</th>
+            <th>Typ</th>
+            <th>kcal/100g</th>
+            <th>Opcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Category.ToString()</td>
+                <td>@product.Origin.ToString()</td>
+                <td>@product.KcalPer100Grams</td>
+                <td>
+                    <button class="cb-btn-default">Edytuj</button>
+                    <button class="cb-btn-default">Usuń</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

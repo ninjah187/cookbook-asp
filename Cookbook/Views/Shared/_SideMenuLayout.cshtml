@@ -19,17 +19,40 @@
     </div>
 </nav>
 
-@RenderBody()
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            @{
+                var user = (User) Session["LoggedUser"];
+                
+                var headerText = @"@" + user.Login;
+
+                var isUserAdmin = user.Role == UserRole.Admin ? true : false;
+            }
+            <h1 class="cp-side-menu-h1">@headerText</h1>
+            <ul class="cp-side-menu">
+                <a href="/Home/"><li>Strona główna</li></a>
+                @if (isUserAdmin)
+                {
+                    <a href="/Management/"><li>Panel admina</li></a>
+                }
+                <a href="/Login/Logout"><li>Wyloguj się</li></a>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
 
 <footer class="cp-footer">
     <div class="container">
-        @{
-            var user = (User) Session["LoggedUser"];
+        @*@{
             if (user != null && user.Role == UserRole.Admin)
             {
                 <a href="/Management/">Panel admina</a>
             }
-        }
+        }*@
         <p class="text-muted">Footer content here</p>
     </div>
 </footer>
