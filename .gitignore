@@ -66,3 +66,5 @@ NuGet.exe
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
+
+ConnectionStrings.config

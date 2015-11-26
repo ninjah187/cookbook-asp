@@ -142,6 +142,7 @@
     <Content Include="Views\Shared\_SideMenuLayout.cshtml" />
     <Content Include="Views\Management\Products.cshtml" />
     <Content Include="Views\Management\Users.cshtml" />
+    <Content Include="ConnectionStrings.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
