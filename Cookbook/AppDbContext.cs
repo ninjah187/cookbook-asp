@@ -5,10 +5,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using Cookbook.Models;
+using Cookbook.Services.EFServices;
 
 namespace Cookbook
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : DbContext, IDbContextService
     {
         public AppDbContext()
             : base("name=AppDbContext")
@@ -26,6 +27,12 @@ namespace Cookbook
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>().MapToStoredProcedures();
+        }
+
+        public new void Dispose()
+        {
+            base.Dispose();
+            throw new Exception("dispose called.");
         }
 
         public DbSet<User> Users { get; set; }

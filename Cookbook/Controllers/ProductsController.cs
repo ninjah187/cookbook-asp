@@ -8,5 +8,9 @@ namespace Cookbook.Controllers
 {
     public class ProductsController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
 }

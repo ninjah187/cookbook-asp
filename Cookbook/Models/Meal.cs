@@ -9,8 +9,8 @@ namespace Cookbook.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ItemOrigin Origin { get; set; }
 
+        public virtual User User { get; set; }
         public virtual ICollection<Product> Products { get; set; }
     }
 }

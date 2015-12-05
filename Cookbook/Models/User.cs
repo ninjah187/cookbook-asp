@@ -12,5 +12,8 @@ namespace Cookbook.Models
         public string PasswordKey { get; set; }
         public string PasswordSalt { get; set; }
         public UserRole Role { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Meal> Meals { get; set; }
     }
 }

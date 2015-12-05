@@ -11,8 +11,9 @@ namespace Cookbook.Models
         public string Name { get; set; }
         public ProductCategory Category { get; set; }
         public ItemOrigin Origin { get; set; }
-        public int KcalPer100Grams { get; set; }
+        public float KcalPer100Grams { get; set; }
 
+        public virtual User User { get; set; }
         public virtual ICollection<Meal> Meals { get; set; }
     }
 }

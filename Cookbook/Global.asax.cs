@@ -14,5 +14,7 @@ namespace Cookbook
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+
+        
     }
 }
