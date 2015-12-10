@@ -4,11 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Cookbook.Security;
+using Cookbook.Services;
+using Ninject;
 
 namespace Cookbook.Controllers
 {
     public class LoginController : Controller
     {
+        [Inject]
+        public IUserService UserService { get; set; }
+
         public ActionResult Index()
         {
             return View();
@@ -16,23 +21,14 @@ namespace Cookbook.Controllers
 
         public ActionResult Authenticate(string login, string password)
         {
-            var hashManager = new PBKDF2HashManager();
-            using (var context = new AppDbContext())
-            {
-                var user = context.Users.FirstOrDefault(u => u.Login == login);
+            UserService.Login(login, password);
 
-                if (user != null && hashManager.Authenticate(password, user.PasswordKey, user.PasswordSalt))
-                {
-                    Session["LoggedUser"] = user;
-                }
-
-                return RedirectToAction("Index", "Home");
-            }
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Logout()
         {
-            Session["LoggedUser"] = null;
+            UserService.Logout();
             return RedirectToAction("Index", "Home");
         }
     }

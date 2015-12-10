@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Cookbook.Security
 {
-    public struct PBKDF2KeySaltPair
+    public struct PBKDF2KeySaltPair : IKeySaltPair
     {
         public PBKDF2KeySaltPair(string key, string salt)
             : this()
@@ -21,7 +21,7 @@ namespace Cookbook.Security
         public string Salt { get; set; }
     }
 
-    public class PBKDF2HashManager
+    public class PBKDF2HashManager : IKeySaltManager
     {
         public int KeyLength { get; set; }
         public int SaltLength { get; set; }
@@ -32,7 +32,7 @@ namespace Cookbook.Security
             SaltLength = 20;
         }
 
-        public PBKDF2KeySaltPair GetKeyAndSalt(string input)
+        public IKeySaltPair GetKeyAndSalt(string input)
         {
             using (var deriveBytes = new Rfc2898DeriveBytes(input, SaltLength)) // SaltLength - size
             {
@@ -67,7 +67,7 @@ namespace Cookbook.Security
             }
         }
 
-        public bool Authenticate(string password, PBKDF2KeySaltPair keySaltPair)
+        public bool Authenticate(string password, IKeySaltPair keySaltPair)
         {
             return Authenticate(password, keySaltPair.Key, keySaltPair.Salt);
         }

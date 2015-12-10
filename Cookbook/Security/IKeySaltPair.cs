@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Cookbook.Models;
 
-namespace Cookbook.Services
+namespace Cookbook.Security
 {
-    public interface IProductService : ICRUDService<Product>
+    public interface IKeySaltPair
     {
+        string Key { get; }
+        string Salt { get; }
     }
 }

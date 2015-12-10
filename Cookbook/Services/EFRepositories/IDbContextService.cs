@@ -7,14 +7,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using Cookbook.Models;
 
-namespace Cookbook.Services.EFServices
+namespace Cookbook.Services.EFRepositories
 {
     public interface IDbContextService : IDisposable
     {
         DbSet<User> Users { get; set; }
         DbSet<Product> Products { get; set; }
         DbSet<Meal> Meals { get; set; }
+
         int SaveChanges();
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+
+        Action<string> Log { get; set; }
     }
 }

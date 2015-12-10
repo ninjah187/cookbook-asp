@@ -1,5 +1,9 @@
 using System.Diagnostics;
-using Cookbook.Services.EFServices;
+using System.Runtime.InteropServices;
+using Cookbook.Models;
+using Cookbook.Security;
+using Cookbook.Services;
+using Cookbook.Services.EFRepositories;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Cookbook.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Cookbook.App_Start.NinjectWebCommon), "Stop")]
@@ -64,7 +68,30 @@ namespace Cookbook.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IDbContextService>().To<AppDbContext>().InRequestScope();
+            kernel.Bind<IDbContextService>()
+                .To<AppDbContext>()
+                .InRequestScope();
+            
+            kernel.Bind<IProductRepository>()
+                .To<EFProductRepository>()
+                .InRequestScope();
+
+            kernel.Bind<IUserRepository>()
+                .To<EFUserRepository>()
+                .InRequestScope();
+
+            kernel.Bind<IKeySaltManager>()
+                .To<PBKDF2HashManager>()
+                .InRequestScope();
+
+            //kernel.Bind<IUserService>()
+            //    .To<UserService>()
+            //    .WithPropertyValue("WebContext", ctx => HttpContext.Current);
+
+            kernel.Bind<IUserService>()
+                .To<UserService>()
+                .InRequestScope()
+                .WithPropertyValue("SessionState", ctx => HttpContext.Current.Session);
         }        
     }
 }

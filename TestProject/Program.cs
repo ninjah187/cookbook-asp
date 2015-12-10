@@ -4,7 +4,12 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Cookbook;
+using Cookbook.Models;
 using Cookbook.Security;
+using Cookbook.Services;
+using Cookbook.Services.EFRepositories;
+using Ninject;
 
 namespace TestProject
 {
@@ -12,13 +17,37 @@ namespace TestProject
     {
         static void Main(string[] args)
         {
-            var hashManager = new PBKDF2HashManager();
-            hashManager.KeyLength = 64;
-            hashManager.SaltLength = 64;
-            var password = "ąćźżźęóńćć";
-            var pair = hashManager.GetKeyAndSalt(password);
+            using (var kernel = new StandardKernel())
+            {
+                kernel.Bind<IDbContextService>().To<AppDbContext>().InTransientScope();
+                kernel.Bind<IProductRepository>().To<EFProductRepository>().InTransientScope();
+
+                //using (var contextService = kernel.Get<IDbContextService>())
+                //{
+                    var productRepo = kernel.Get<IProductRepository>();
+
+                    if (productRepo.GetByName("całkiem nowy produkt") == null)
+                    {
+                        productRepo.Add(new Product()
+                        {
+                            Name = "całkiem nowy produkt"
+                        });
+                    }
+
+                    foreach (var item in productRepo.YieldAll())
+                    {
+                        Console.WriteLine(item.Name);
+                    }
+                //}
+            }
+
+            //var hashManager = new PBKDF2HashManager();
+            //hashManager.KeyLength = 64;
+            //hashManager.SaltLength = 64;
+            //var password = "ąćźżźęóńćć";
+            //var pair = hashManager.GetKeyAndSalt(password);
             
-            Console.WriteLine(pair.Key.Length + "\n" + pair.Salt.Length);
+            //Console.WriteLine(pair.Key.Length + "\n" + pair.Salt.Length);
 
             //Console.WriteLine(pair.Key + "\n" + pair.Salt);
 

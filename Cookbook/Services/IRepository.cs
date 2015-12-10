@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cookbook.Services
 {
-    public interface ICRUDService<T>
+    public interface IRepository<T>
     {
         // TODO: use IProductService etc or just use this generic class?
 
@@ -16,5 +16,9 @@ namespace Cookbook.Services
         void Update(int id, T newItem);
         void Update(T item, T newItem);
         T Get(int id);
+        IEnumerable<T> Get(IEnumerable<int> ids);
+        IEnumerable<T> GetAll();
+        IEnumerable<T> Yield(IEnumerable<int> ids);
+        IEnumerable<T> YieldAll();
     }
 }

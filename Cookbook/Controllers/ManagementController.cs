@@ -4,15 +4,22 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Cookbook.Models;
+using Cookbook.Services;
+using Ninject;
 
 namespace Cookbook.Controllers
 {
     public class ManagementController : Controller
     {
+        [Inject]
+        public IProductRepository ProductRepository { get; set; }
+
+        [Inject]
+        public IUserService UserService { get; set; }
+
         public ActionResult Index()
         {
-            var user = (User) Session["LoggedUser"];
-            if (VerifyUserAccessPriviliges(user) == false)
+            if (UserService.VerifyUserAdminPriviliges() == false)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -22,40 +29,22 @@ namespace Cookbook.Controllers
 
         public ActionResult Products()
         {
-            var user = (User) Session["LoggedUser"];
-            if (VerifyUserAccessPriviliges(user) == false)
+            if (UserService.VerifyUserAdminPriviliges() == false)
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            using (var context = new AppDbContext())
-            {
-                return View(context.Products.ToList());
-            }
+            return View(ProductRepository.GetAll());
         }
 
         public ActionResult Users()
         {
-            var user = (User)Session["LoggedUser"];
-            if (VerifyUserAccessPriviliges(user) == false)
+            if (UserService.VerifyUserAdminPriviliges() == false)
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            using (var context = new AppDbContext())
-            {
-                return View(context.Users.ToList());
-            }
-
-        }
-
-        private bool VerifyUserAccessPriviliges(User user)
-        {
-            if (user == null || user.Role != UserRole.Admin)
-            {
-                return false;
-            }
-            return true;
+            return View(UserService.Repository.GetAll());
         }
     }
 }
