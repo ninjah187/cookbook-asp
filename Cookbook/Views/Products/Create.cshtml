@@ -1,0 +1,32 @@
+﻿@using Cookbook.ExtensionMethods
+@using Cookbook.Models;
+@{
+    Layout = "~/Views/Shared/_SideMenuLayout.cshtml";
+}
+
+<div class="cb-container">
+    <h2 class="cb-h2">Dodaj produkt:</h2>
+    <form id="cb-create-form" class="cb-form" action="/Products/CreatePost" method="POST">
+        <div class="form-group">
+            <label for="cb-name-input">Nazwa:</label>
+            <input type="text" id="cb-name-input" class="form-control" name="productName"/>
+        </div>
+        <div class="form-group">
+            <label for="cb-energy-input">kCal/100 g:</label>
+            <input type="text" id="cb-energy-input" class="form-control" name="productEnergy"/>
+        </div>
+        <div class="form-group">
+            <label for="cb-category-select">Kategoria:</label>
+            <select id="cb-category-select" class="form-control" name="productCategory" form="cb-create-form">
+                @{
+                    var enumType = typeof (ProductCategory);
+                    foreach (var value in enumType.GetEnumValues())
+                    {
+                        <option value="@value">@(((ProductCategory) value).GetTranslatedDescription())</option>
+                    }
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+    </form>
+</div>

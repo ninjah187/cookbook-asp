@@ -120,6 +120,7 @@
     <Compile Include="AppDbContextInitializer.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Attributes\TranslatedNameAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManagementController.cs" />
@@ -127,10 +128,14 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Exceptions\LoggingException.cs" />
     <Compile Include="Exceptions\NoSuchUserInDatabaseException.cs" />
+    <Compile Include="Exceptions\RepositoryException.cs" />
     <Compile Include="Exceptions\WrongPasswordException.cs" />
+    <Compile Include="ExtensionMethods\CommonExtensions.cs" />
+    <Compile Include="ExtensionMethods\EnumExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Language.cs" />
     <Compile Include="Models\IModelElement.cs" />
     <Compile Include="Models\ItemOrigin.cs" />
     <Compile Include="Models\Meal.cs" />
@@ -151,11 +156,18 @@
     <Compile Include="Services\EFRepositories\EFProductRepository.cs" />
     <Compile Include="Services\EFRepositories\EFUserRepository.cs" />
     <Compile Include="Services\EFRepositories\IDbContextService.cs" />
+    <Compile Include="Services\IProductService.cs" />
     <Compile Include="Services\IRepository.cs" />
     <Compile Include="Services\IProductRepository.cs" />
     <Compile Include="Services\IUserRepository.cs" />
     <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="TranslationResources\TranslatedProductCategoriesPL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TranslatedProductCategoriesPL.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -170,6 +182,8 @@
     <Content Include="Views\Management\Products.cshtml" />
     <Content Include="Views\Management\Users.cshtml" />
     <Content Include="ConnectionStrings.config" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -179,7 +193,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Products\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TranslationResources\TranslatedProductCategoriesPL.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TranslatedProductCategoriesPL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

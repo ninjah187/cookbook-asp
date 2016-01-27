@@ -29,6 +29,34 @@ namespace Cookbook.Services.EFRepositories
             DbContextService.SaveChanges();
         }
 
+        public void AddToUser(Product product, User user)
+        {
+            if (Exists(product, user))
+            {
+                throw new InvalidOperationException("Such product already exists.");
+            }
+
+            product.User = DbContextService.Users.Single(u => u.Id == user.Id);
+
+            DbSet.Add(product);
+            DbContextService.SaveChanges();
+        }
+
+        public void Remove(int productId, User user)
+        {
+            var product = Get(productId);
+
+            if (product.User.Id != user.Id)
+            {
+                throw new InvalidOperationException("Product doesn't belong to specific user.");
+            }
+
+            product.User = null;
+
+            DbSet.Remove(product);
+            DbContextService.SaveChanges();
+        }
+
         public override void Update(int id, Product newItem)
         {
             var item = Get(id);
@@ -57,6 +85,21 @@ namespace Cookbook.Services.EFRepositories
         public Product GetByName(string name)
         {
             return DbSet.SingleOrDefault(p => p.Name == name);
+        }
+
+        public ICollection<Product> GetByUser(User user)
+        {
+            return DbSet.Where(p => p.User.Id == user.Id).ToList();
+        }
+
+        public override bool Exists(Product item)
+        {
+            return DbSet.SingleOrDefault(p => p.Id == item.Id || p.Name == item.Name) != null;
+        }
+
+        public bool Exists(Product item, User user)
+        {
+            return DbSet.SingleOrDefault(p => (p.Id == item.Id || p.Name == item.Name) && p.User.Id == user.Id) != null;
         }
     }
 }

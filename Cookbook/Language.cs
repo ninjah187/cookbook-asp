@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Cookbook.ExtensionMethods
+namespace Cookbook
 {
-    public static class DynamicExtensionMethods
+    public enum Language : byte
     {
+        EN = 0,
+        PL = 1
     }
 }

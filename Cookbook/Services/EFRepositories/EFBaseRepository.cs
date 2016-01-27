@@ -97,5 +97,10 @@ namespace Cookbook.Services.EFRepositories
                 yield return item;
             }
         }
+
+        public virtual bool Exists(T item)
+        {
+            return DbSet.Contains(item);
+        }
     }
 }

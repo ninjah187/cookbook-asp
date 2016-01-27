@@ -1,0 +1,59 @@
+﻿@using System.Globalization
+@using Cookbook.ExtensionMethods
+@model List<Cookbook.Models.Product>
+@{
+    Layout = "~/Views/Shared/_SideMenuLayout.cshtml";
+}
+
+<h2 class="cb-h2">Produkty :</h2>
+<div class="cb-row text-center">
+    <p>Wszystkich produktów: @Model.Count</p>
+
+    <form action="/Products/Create">
+        <button type="submit" class="cb-btn-default">+</button>
+    </form>
+
+    @foreach (var category in Model.Select(p => p.Category).Distinct())
+    {
+        <h2 class="">@category.GetTranslatedDescription()</h2>
+        <div class="row">
+            @foreach (var product in Model.Where(p => p.Category == category))
+            {
+                <div class="col-md-4">
+                    <p>@product.Name</p>
+                    <p>@product.KcalPer100Grams kCal/100 g</p>
+                </div>
+            }
+        </div>
+    }
+
+    @*<table class="table cb-table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nazwa</th>
+            <th>Kategoria</th>
+            <th>kcal/100g</th>
+            <th>Opcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Category.GetTranslatedDescription()</td>
+                <td>@product.KcalPer100Grams</td>
+                <td>
+                    <button class="cb-btn-default">Edytuj</button>
+                    <form action="/Products/Remove/">
+                        <input type="text" name="productId" value="@product.Id" hidden />
+                        <button type="submit" class="cb-btn-default">Usuń</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>*@
+</div>

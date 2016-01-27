@@ -20,13 +20,19 @@ namespace Cookbook
         public AppDbContext()
             : base("name=AppDbContext")
         {
-            Database.SetInitializer<AppDbContext>(new DropCreateDatabaseAlways<AppDbContext>());
+            Initialize();
         }
 
         public AppDbContext(DbConnection existingConnection, bool contextOwnsConnection)
             : base(existingConnection, contextOwnsConnection)
         {
-            Database.SetInitializer<AppDbContext>(new DropCreateDatabaseAlways<AppDbContext>());
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            Database.SetInitializer<AppDbContext>(new DropCreateDatabaseIfModelChanges<AppDbContext>());
+            //Database.SetInitializer<AppDbContext>(new DropCreateDatabaseAlways<AppDbContext>());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

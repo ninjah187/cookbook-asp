@@ -92,6 +92,10 @@ namespace Cookbook.App_Start
                 .To<UserService>()
                 .InRequestScope()
                 .WithPropertyValue("SessionState", ctx => HttpContext.Current.Session);
+
+            kernel.Bind<IProductService>()
+                .To<ProductService>()
+                .InRequestScope();
         }        
     }
 }

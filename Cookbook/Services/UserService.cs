@@ -19,8 +19,13 @@ namespace Cookbook.Services
         [Inject]
         public IKeySaltManager HashManager { get; set; }
 
-        [Inject]
+        //[Inject]
         public HttpSessionState SessionState { get; set; }
+
+        public User LoggedUser
+        {
+            get { return (User) SessionState["LoggedUser"]; }
+        }
 
         public void Login(string login, string password)
         {

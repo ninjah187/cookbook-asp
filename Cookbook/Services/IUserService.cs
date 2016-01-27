@@ -21,6 +21,8 @@ namespace Cookbook.Services
         /// </summary>
         bool VerifyUserAdminPriviliges();
 
+        User LoggedUser { get; }
+
         IUserRepository Repository { get; }
         IKeySaltManager HashManager { get; }
         HttpSessionState SessionState { get; }

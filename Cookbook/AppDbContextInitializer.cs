@@ -5,10 +5,14 @@ using System.Linq;
 using System.Web;
 using Cookbook.Models;
 using Cookbook.Security;
+using Cookbook.Services;
+using Cookbook.Services.EFRepositories;
+using Ninject;
 
 namespace Cookbook
 {
-    public class AppDbContextInitializer : DropCreateDatabaseAlways<AppDbContext>
+    public class AppDbContextInitializer : DropCreateDatabaseIfModelChanges<AppDbContext>
+    //public class AppDbContextInitializer : DropCreateDatabaseAlways<AppDbContext>
     {
         protected override void Seed(AppDbContext context)
         {

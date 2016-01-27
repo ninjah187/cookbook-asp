@@ -20,5 +20,6 @@ namespace Cookbook.Services
         IEnumerable<T> GetAll();
         IEnumerable<T> Yield(IEnumerable<int> ids);
         IEnumerable<T> YieldAll();
+        bool Exists(T item);
     }
 }
